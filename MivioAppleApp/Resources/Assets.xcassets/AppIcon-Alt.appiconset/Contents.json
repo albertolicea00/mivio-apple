@@ -4,7 +4,7 @@
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024",
-      "filename" : "icon-light.png"
+      "filename" : "icon-light-alt.png"
     },
     {
       "idiom" : "universal",
@@ -33,7 +33,7 @@
     {
       "idiom" : "mac",
       "size" : "1024x1024",
-      "filename" : "icon-light.png"
+      "filename" : "icon-light-alt.png"
     },
     {
       "idiom" : "mac",
