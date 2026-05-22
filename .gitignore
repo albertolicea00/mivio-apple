@@ -1,0 +1,81 @@
+# ==============================================================================
+# Mivio - Git Ignore Rules for Apple Ecosystem Multiplatform Project
+# ==============================================================================
+
+# OS & System Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon\r
+._*
+.DocumentRevisions-V100
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.fseventsd
+$RECYCLE.BIN/
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Xcode / User Files
+# ------------------------------------------------------------------------------
+*.xcworkspace
+!default.xcworkspace
+xcuserdata/
+*.xcuserstate
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.ide
+*.orig
+
+# Xcode Build Artifacts
+# ------------------------------------------------------------------------------
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager (SPM)
+# ------------------------------------------------------------------------------
+.build/
+.swiftpm/
+!.swiftpm/configuration/
+!.swiftpm/xcode/
+# Note: Keep package configurations tracked, but ignore user-specific settings
+.swiftpm/xcode/xcuserdata/
+.swiftpm/xcode/xcshareddata/
+
+# CocoaPods (if ever introduced, SPM is preferred)
+# ------------------------------------------------------------------------------
+# Pods/
+# *.xcworkspace
+
+# Carthage (if ever introduced)
+# ------------------------------------------------------------------------------
+# Carthage/Build/
+
+# Fastlane (if ever introduced)
+# ------------------------------------------------------------------------------
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Miscellaneous
+# ------------------------------------------------------------------------------
+*~
+*.swp
+*.swo
+.lock-wscript
+.env
+.env.*
+.DS_Store?
+/.prompts

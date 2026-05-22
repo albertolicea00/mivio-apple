@@ -1,0 +1,699 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DFAC5E0DD591F232AA7605D /* MivioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE61722BED72468405D07FB /* MivioUI */; };
+		297B71A809748187112FE331 /* MivioCore in Frameworks */ = {isa = PBXBuildFile; productRef = D917CE6D1B28B544EA15BC28 /* MivioCore */; };
+		459F6E36C8A45D9C23DBA445 /* MivioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8E8DCA1102AC4CF96050F5E2 /* MivioUI */; };
+		4B025DC28C3851D9FD6FAA60 /* MivioCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8152C6222F4A814572815F5C /* MivioCore */; };
+		53B6212EB18E75CCC110307D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9FD87AE84125CC7B8191A91 /* Assets.xcassets */; };
+		5CFDE95EB805631D52CA45B6 /* MivioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA775C13922CF9435A6E0B /* MivioApp.swift */; };
+		78944315273F9FDEB4235D95 /* MivioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA775C13922CF9435A6E0B /* MivioApp.swift */; };
+		855FED503EB2F669D3DAB60B /* MivioUI in Frameworks */ = {isa = PBXBuildFile; productRef = E0568B8425AFE129B7D87CAA /* MivioUI */; };
+		AFED65ECD8BA82CC8022C4E3 /* MivioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA775C13922CF9435A6E0B /* MivioApp.swift */; };
+		B3A1C925D0353935F214E522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9FD87AE84125CC7B8191A91 /* Assets.xcassets */; };
+		C46114D2C3F1BEC59AA71E39 /* MivioCore in Frameworks */ = {isa = PBXBuildFile; productRef = B1A4EF2DDFCEDBF4BE965DDC /* MivioCore */; };
+		C9750960210E052E13ADDE99 /* MivioCore in Frameworks */ = {isa = PBXBuildFile; productRef = 5E08DE262C8923D6E76FB3AC /* MivioCore */; };
+		D728CBC9B0B4A91CEAA5A228 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9FD87AE84125CC7B8191A91 /* Assets.xcassets */; };
+		E0FB6F044D08D68BAC22CB88 /* MivioUI in Frameworks */ = {isa = PBXBuildFile; productRef = D284E7082D63B883025C4ADD /* MivioUI */; };
+		EA3F5DCD75203E45AB8EB732 /* MivioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA775C13922CF9435A6E0B /* MivioApp.swift */; };
+		FE118C925DCE91ACDAC5C3B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9FD87AE84125CC7B8191A91 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		73DA775C13922CF9435A6E0B /* MivioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MivioApp.swift; sourceTree = "<group>"; };
+		8086867FD779AAFE47DB4B83 /* Mivio-visionOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Mivio-visionOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9FD87AE84125CC7B8191A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5BC88F174667F5DBA352270 /* Mivio-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Mivio-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCAE5D2FBA87160E5EE645BE /* Mivio_apple */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Mivio_apple; path = .; sourceTree = SOURCE_ROOT; };
+		E8DB3846E53D4DFB01529690 /* Mivio-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mivio-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC9FB8CC923C42646FEA3448 /* Mivio-tvOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Mivio-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F54528B9E79F6A42668733A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459F6E36C8A45D9C23DBA445 /* MivioUI in Frameworks */,
+				297B71A809748187112FE331 /* MivioCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DED29B65ED3DDA6E43CD62F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DFAC5E0DD591F232AA7605D /* MivioUI in Frameworks */,
+				4B025DC28C3851D9FD6FAA60 /* MivioCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		700BB4CE5A204531DF30754A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0FB6F044D08D68BAC22CB88 /* MivioUI in Frameworks */,
+				C46114D2C3F1BEC59AA71E39 /* MivioCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80372CE528CB4E2BBB9C98F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				855FED503EB2F669D3DAB60B /* MivioUI in Frameworks */,
+				C9750960210E052E13ADDE99 /* MivioCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4804913C3F617006D303FAAD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				73DA775C13922CF9435A6E0B /* MivioApp.swift */,
+			);
+			name = Shared;
+			path = MivioAppleApp/Shared;
+			sourceTree = "<group>";
+		};
+		4DDC4425BB782ECD0FBBF28A = {
+			isa = PBXGroup;
+			children = (
+				5B1A285D4EBF11C35B568E99 /* Packages */,
+				BB21511B45E12C9C3463552A /* Resources */,
+				4804913C3F617006D303FAAD /* Shared */,
+				8EA7FA9F9BD2E84CC3BF7785 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5B1A285D4EBF11C35B568E99 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				CCAE5D2FBA87160E5EE645BE /* Mivio_apple */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		8EA7FA9F9BD2E84CC3BF7785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5BC88F174667F5DBA352270 /* Mivio-iOS.app */,
+				E8DB3846E53D4DFB01529690 /* Mivio-macOS.app */,
+				EC9FB8CC923C42646FEA3448 /* Mivio-tvOS.app */,
+				8086867FD779AAFE47DB4B83 /* Mivio-visionOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB21511B45E12C9C3463552A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9FD87AE84125CC7B8191A91 /* Assets.xcassets */,
+			);
+			name = Resources;
+			path = MivioAppleApp/Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71CA57F6A7FCAE0B64D03C48 /* Mivio-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF3779A82BD3DB6D8269369D /* Build configuration list for PBXNativeTarget "Mivio-iOS" */;
+			buildPhases = (
+				E7B2E157ADDA24DCD641AD14 /* Sources */,
+				86DA838CA8F65B3C382E0F6C /* Resources */,
+				80372CE528CB4E2BBB9C98F0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mivio-iOS";
+			packageProductDependencies = (
+				E0568B8425AFE129B7D87CAA /* MivioUI */,
+				5E08DE262C8923D6E76FB3AC /* MivioCore */,
+			);
+			productName = "Mivio-iOS";
+			productReference = C5BC88F174667F5DBA352270 /* Mivio-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B07949FE3ECA2B562B43969D /* Mivio-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C51B34AC82A915A433D1ED08 /* Build configuration list for PBXNativeTarget "Mivio-macOS" */;
+			buildPhases = (
+				88183DD1F3703542F0590B19 /* Sources */,
+				93DCE57A1B5E132ADA692395 /* Resources */,
+				4DED29B65ED3DDA6E43CD62F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mivio-macOS";
+			packageProductDependencies = (
+				1FE61722BED72468405D07FB /* MivioUI */,
+				8152C6222F4A814572815F5C /* MivioCore */,
+			);
+			productName = "Mivio-macOS";
+			productReference = E8DB3846E53D4DFB01529690 /* Mivio-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CD4579DE9141F3A41C60B635 /* Mivio-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09EA501D09C9DB3B0CEC7B2E /* Build configuration list for PBXNativeTarget "Mivio-tvOS" */;
+			buildPhases = (
+				A2F97BBE1FBE1D315C527B62 /* Sources */,
+				5B88C6579414872D3E7E5E31 /* Resources */,
+				700BB4CE5A204531DF30754A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mivio-tvOS";
+			packageProductDependencies = (
+				D284E7082D63B883025C4ADD /* MivioUI */,
+				B1A4EF2DDFCEDBF4BE965DDC /* MivioCore */,
+			);
+			productName = "Mivio-tvOS";
+			productReference = EC9FB8CC923C42646FEA3448 /* Mivio-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F732F8BEAF6780EF1FDB4AF0 /* Mivio-visionOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BACFF0762F2DAD0274634057 /* Build configuration list for PBXNativeTarget "Mivio-visionOS" */;
+			buildPhases = (
+				CA9A19CC93EA4D7E6352F339 /* Sources */,
+				A2F37A36179069C7E0078CF1 /* Resources */,
+				2F54528B9E79F6A42668733A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mivio-visionOS";
+			packageProductDependencies = (
+				8E8DCA1102AC4CF96050F5E2 /* MivioUI */,
+				D917CE6D1B28B544EA15BC28 /* MivioCore */,
+			);
+			productName = "Mivio-visionOS";
+			productReference = 8086867FD779AAFE47DB4B83 /* Mivio-visionOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29276474565B7481B19EAE2F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					71CA57F6A7FCAE0B64D03C48 = {
+						DevelopmentTeam = "";
+					};
+					B07949FE3ECA2B562B43969D = {
+						DevelopmentTeam = "";
+					};
+					CD4579DE9141F3A41C60B635 = {
+						DevelopmentTeam = "";
+					};
+					F732F8BEAF6780EF1FDB4AF0 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = B46C4076185CE5FC8F486154 /* Build configuration list for PBXProject "Mivio" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 4DDC4425BB782ECD0FBBF28A;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F6BC727DF51573DC7411999D /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8EA7FA9F9BD2E84CC3BF7785 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71CA57F6A7FCAE0B64D03C48 /* Mivio-iOS */,
+				B07949FE3ECA2B562B43969D /* Mivio-macOS */,
+				CD4579DE9141F3A41C60B635 /* Mivio-tvOS */,
+				F732F8BEAF6780EF1FDB4AF0 /* Mivio-visionOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5B88C6579414872D3E7E5E31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3A1C925D0353935F214E522 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86DA838CA8F65B3C382E0F6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53B6212EB18E75CCC110307D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93DCE57A1B5E132ADA692395 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D728CBC9B0B4A91CEAA5A228 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F37A36179069C7E0078CF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE118C925DCE91ACDAC5C3B7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88183DD1F3703542F0590B19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA3F5DCD75203E45AB8EB732 /* MivioApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F97BBE1FBE1D315C527B62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CFDE95EB805631D52CA45B6 /* MivioApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA9A19CC93EA4D7E6352F339 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFED65ECD8BA82CC8022C4E3 /* MivioApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7B2E157ADDA24DCD641AD14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78944315273F9FDEB4235D95 /* MivioApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0B2ABE2C6202D7FDFCF6610A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-mac";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		21C67ABE77AB27F1CD1D383C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-vision";
+				SDKROOT = xros;
+				TARGETED_DEVICE_FAMILY = 7;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+		31E8FFFCBB50C0F8AD6BE6E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		658518C427E5D377049EAF89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-vision";
+				SDKROOT = xros;
+				TARGETED_DEVICE_FAMILY = 7;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		808014C7C063D1798CFDCFD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-tv";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		88F6D7196C36CF4EEB557319 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-tv";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		AC1149620DC44FE428E5B668 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albertolicea.Mivio;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C35DC5F187EC1B748E57523A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albertolicea.Mivio;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DB9F075C27D84AB6EC313579 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FD7B0FCD1EDCD957DBB00211 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-mac";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09EA501D09C9DB3B0CEC7B2E /* Build configuration list for PBXNativeTarget "Mivio-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F6D7196C36CF4EEB557319 /* Debug */,
+				808014C7C063D1798CFDCFD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AF3779A82BD3DB6D8269369D /* Build configuration list for PBXNativeTarget "Mivio-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC1149620DC44FE428E5B668 /* Debug */,
+				C35DC5F187EC1B748E57523A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B46C4076185CE5FC8F486154 /* Build configuration list for PBXProject "Mivio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB9F075C27D84AB6EC313579 /* Debug */,
+				31E8FFFCBB50C0F8AD6BE6E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BACFF0762F2DAD0274634057 /* Build configuration list for PBXNativeTarget "Mivio-visionOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				658518C427E5D377049EAF89 /* Debug */,
+				21C67ABE77AB27F1CD1D383C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C51B34AC82A915A433D1ED08 /* Build configuration list for PBXNativeTarget "Mivio-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD7B0FCD1EDCD957DBB00211 /* Debug */,
+				0B2ABE2C6202D7FDFCF6610A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		F6BC727DF51573DC7411999D /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FE61722BED72468405D07FB /* MivioUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioUI;
+		};
+		5E08DE262C8923D6E76FB3AC /* MivioCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioCore;
+		};
+		8152C6222F4A814572815F5C /* MivioCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioCore;
+		};
+		8E8DCA1102AC4CF96050F5E2 /* MivioUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioUI;
+		};
+		B1A4EF2DDFCEDBF4BE965DDC /* MivioCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioCore;
+		};
+		D284E7082D63B883025C4ADD /* MivioUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioUI;
+		};
+		D917CE6D1B28B544EA15BC28 /* MivioCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioCore;
+		};
+		E0568B8425AFE129B7D87CAA /* MivioUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MivioUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 29276474565B7481B19EAE2F /* Project object */;
+}

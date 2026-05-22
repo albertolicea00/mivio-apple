@@ -1,0 +1,99 @@
+name: Mivio
+options:
+  bundleIdPrefix: com.albertolicea
+  developmentLanguage: en
+
+packages:
+  Mivio:
+    path: .
+
+targets:
+  Mivio-iOS:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: MivioAppleApp/Shared
+      - path: MivioAppleApp/Resources
+    dependencies:
+      - package: Mivio
+        product: MivioUI
+      - package: Mivio
+        product: MivioCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        PRODUCT_BUNDLE_IDENTIFIER: com.albertolicea.Mivio
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        DEVELOPMENT_TEAM: ""
+        SDKROOT: iphoneos
+        CURRENT_PROJECT_VERSION: "1"
+        MARKETING_VERSION: "1.0.0"
+
+  Mivio-macOS:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: MivioAppleApp/Shared
+      - path: MivioAppleApp/Resources
+    dependencies:
+      - package: Mivio
+        product: MivioUI
+      - package: Mivio
+        product: MivioCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.albertolicea.Mivio-mac
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        DEVELOPMENT_TEAM: ""
+        SDKROOT: macosx
+        CURRENT_PROJECT_VERSION: "1"
+        MARKETING_VERSION: "1.0.0"
+
+  Mivio-tvOS:
+    type: application
+    platform: tvOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: MivioAppleApp/Shared
+      - path: MivioAppleApp/Resources
+    dependencies:
+      - package: Mivio
+        product: MivioUI
+      - package: Mivio
+        product: MivioCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.albertolicea.Mivio-tv
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        DEVELOPMENT_TEAM: ""
+        SDKROOT: appletvos
+        CURRENT_PROJECT_VERSION: "1"
+        MARKETING_VERSION: "1.0.0"
+
+  Mivio-visionOS:
+    type: application
+    platform: visionOS
+    deploymentTarget: "1.0"
+    sources:
+      - path: MivioAppleApp/Shared
+      - path: MivioAppleApp/Resources
+    dependencies:
+      - package: Mivio
+        product: MivioUI
+      - package: Mivio
+        product: MivioCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.albertolicea.Mivio-vision
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        DEVELOPMENT_TEAM: ""
+        SDKROOT: xros
+        CURRENT_PROJECT_VERSION: "1"
+        MARKETING_VERSION: "1.0.0"
