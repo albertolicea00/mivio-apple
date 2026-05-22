@@ -34,7 +34,7 @@ APP_PATH=$(xcodebuild -project Mivio.xcodeproj -scheme "$SCHEME" -destination "p
 if [ -z "$APP_PATH" ] || [ ! -d "$APP_PATH" ]; then
     # Fallback to standard derived data search
     echo "Warning: Could not find build folder via showBuildSettings, searching default DerivedData..."
-    APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -name "Mivio-iOS.app" -type d | head -n 1)
+    APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -name "Mivio.app" -type d -path "*/Debug-iphonesimulator/*" | head -n 1)
 fi
 
 if [ -z "$APP_PATH" ]; then

@@ -26,13 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CE5C69E165DAA067774AAE8 /* Mivio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FFD3B6CC794BBB03D69D7A7 /* Mivio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73DA775C13922CF9435A6E0B /* MivioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MivioApp.swift; sourceTree = "<group>"; };
-		8086867FD779AAFE47DB4B83 /* Mivio-visionOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mivio-visionOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		978CE2605B5253964C906C53 /* Mivio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9FD87AE84125CC7B8191A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C5BC88F174667F5DBA352270 /* Mivio-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mivio-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCAE5D2FBA87160E5EE645BE /* Mivio_apple */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Mivio_apple; path = .; sourceTree = SOURCE_ROOT; };
-		E8DB3846E53D4DFB01529690 /* Mivio-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mivio-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC9FB8CC923C42646FEA3448 /* Mivio-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mivio-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFAA41926BF99B1E9B31CD5A /* Mivio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +105,10 @@
 		8EA7FA9F9BD2E84CC3BF7785 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C5BC88F174667F5DBA352270 /* Mivio-iOS.app */,
-				E8DB3846E53D4DFB01529690 /* Mivio-macOS.app */,
-				EC9FB8CC923C42646FEA3448 /* Mivio-tvOS.app */,
-				8086867FD779AAFE47DB4B83 /* Mivio-visionOS.app */,
+				0CE5C69E165DAA067774AAE8 /* Mivio.app */,
+				978CE2605B5253964C906C53 /* Mivio.app */,
+				3FFD3B6CC794BBB03D69D7A7 /* Mivio.app */,
+				CFAA41926BF99B1E9B31CD5A /* Mivio.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,7 +143,7 @@
 				5E08DE262C8923D6E76FB3AC /* MivioCore */,
 			);
 			productName = "Mivio-iOS";
-			productReference = C5BC88F174667F5DBA352270 /* Mivio-iOS.app */;
+			productReference = 0CE5C69E165DAA067774AAE8 /* Mivio.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B07949FE3ECA2B562B43969D /* Mivio-macOS */ = {
@@ -164,7 +164,7 @@
 				8152C6222F4A814572815F5C /* MivioCore */,
 			);
 			productName = "Mivio-macOS";
-			productReference = E8DB3846E53D4DFB01529690 /* Mivio-macOS.app */;
+			productReference = 978CE2605B5253964C906C53 /* Mivio.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CD4579DE9141F3A41C60B635 /* Mivio-tvOS */ = {
@@ -185,7 +185,7 @@
 				B1A4EF2DDFCEDBF4BE965DDC /* MivioCore */,
 			);
 			productName = "Mivio-tvOS";
-			productReference = EC9FB8CC923C42646FEA3448 /* Mivio-tvOS.app */;
+			productReference = 3FFD3B6CC794BBB03D69D7A7 /* Mivio.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F732F8BEAF6780EF1FDB4AF0 /* Mivio-visionOS */ = {
@@ -206,7 +206,7 @@
 				D917CE6D1B28B544EA15BC28 /* MivioCore */,
 			);
 			productName = "Mivio-visionOS";
-			productReference = 8086867FD779AAFE47DB4B83 /* Mivio-visionOS.app */;
+			productReference = CFAA41926BF99B1E9B31CD5A /* Mivio.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -216,7 +216,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					71CA57F6A7FCAE0B64D03C48 = {
 						DevelopmentTeam = "";
@@ -334,18 +334,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-macOS";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-mac";
+				PRODUCT_NAME = Mivio;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -364,9 +363,10 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-vision";
+				PRODUCT_NAME = Mivio;
 				SDKROOT = xros;
 				TARGETED_DEVICE_FAMILY = 7;
-				XROS_DEPLOYMENT_TARGET = 1.3;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
@@ -404,11 +404,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -420,7 +418,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -441,9 +438,10 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-vision";
+				PRODUCT_NAME = Mivio;
 				SDKROOT = xros;
 				TARGETED_DEVICE_FAMILY = 7;
-				XROS_DEPLOYMENT_TARGET = 1.3;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
@@ -456,16 +454,16 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-tv";
+				PRODUCT_NAME = Mivio;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.6;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Release;
 		};
@@ -478,16 +476,16 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-tv";
+				PRODUCT_NAME = Mivio;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.6;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Debug;
 		};
@@ -500,16 +498,16 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.albertolicea.Mivio;
+				PRODUCT_NAME = Mivio;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -524,16 +522,16 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.albertolicea.Mivio;
+				PRODUCT_NAME = Mivio;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -573,11 +571,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -596,7 +592,6 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -609,18 +604,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-macOS";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertolicea.Mivio-mac";
+				PRODUCT_NAME = Mivio;
 				SDKROOT = macosx;
 			};
 			name = Debug;
