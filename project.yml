@@ -26,7 +26,7 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
         PRODUCT_BUNDLE_IDENTIFIER: com.albertolicea.Mivio
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon-iOS
         DEVELOPMENT_TEAM: ""
         SDKROOT: iphoneos
         CURRENT_PROJECT_VERSION: "1"
@@ -48,7 +48,7 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_BUNDLE_IDENTIFIER: com.albertolicea.Mivio-mac
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon-macOS
         DEVELOPMENT_TEAM: ""
         SDKROOT: macosx
         CURRENT_PROJECT_VERSION: "1"

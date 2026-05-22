@@ -1,0 +1,17 @@
+{
+  "images" : [
+    {
+      "idiom" : "tv",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Group 69.png",
+      "idiom" : "tv",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
