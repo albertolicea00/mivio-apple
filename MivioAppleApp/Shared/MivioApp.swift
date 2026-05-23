@@ -29,6 +29,16 @@ struct MivioApp: App {
         } catch {
             fatalError("Could not initialize SwiftData ModelContainer: \(error.localizedDescription)")
         }
+        setupFilesDirectory()
+    }
+    
+    private func setupFilesDirectory() {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let dummyFileURL = documentsURL.appendingPathComponent("Place media here to add them")
+        if !FileManager.default.fileExists(atPath: dummyFileURL.path) {
+            let text = "Place video files here"
+            try? text.write(to: dummyFileURL, atomically: true, encoding: .utf8)
+        }
     }
     
     var body: some Scene {

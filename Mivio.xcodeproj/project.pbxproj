@@ -28,6 +28,7 @@
 /* Begin PBXFileReference section */
 		0CE5C69E165DAA067774AAE8 /* Mivio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFD3B6CC794BBB03D69D7A7 /* Mivio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		468CA7BD2FC24E13000F87A2 /* Mivio-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mivio-iOS-Info.plist"; sourceTree = "<group>"; };
 		73DA775C13922CF9435A6E0B /* MivioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MivioApp.swift; sourceTree = "<group>"; };
 		978CE2605B5253964C906C53 /* Mivio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9FD87AE84125CC7B8191A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		4DDC4425BB782ECD0FBBF28A = {
 			isa = PBXGroup;
 			children = (
+				468CA7BD2FC24E13000F87A2 /* Mivio-iOS-Info.plist */,
 				5B1A285D4EBF11C35B568E99 /* Packages */,
 				BB21511B45E12C9C3463552A /* Resources */,
 				4804913C3F617006D303FAAD /* Shared */,
@@ -494,9 +496,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7W3D3JL6PV;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mivio-iOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -518,9 +523,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7W3D3JL6PV;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mivio-iOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
