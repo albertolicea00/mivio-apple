@@ -4,10 +4,22 @@ import Kingfisher
 import AVKit
 import MivioCore
 
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
 // MARK: - Premium Color System
 public enum MivioTheme {
-    public static let background = Color(red: 0.05, green: 0.05, blue: 0.08)
-    public static let cardBackground = Color(red: 0.11, green: 0.11, blue: 0.16)
+    #if os(macOS)
+    public static let background = Color(nsColor: .windowBackgroundColor)
+    public static let cardBackground = Color(nsColor: .controlBackgroundColor)
+    #else
+    public static let background = Color(uiColor: .systemBackground)
+    public static let cardBackground = Color(uiColor: .secondarySystemBackground)
+    #endif
+    
     
     // Brand Colors (loaded from Assets.xcassets)
     public static let brandPrimary = Color("BrandPrimary", bundle: .module)
@@ -527,28 +539,7 @@ public struct MivioSearchView: View {
     }
 }
 
-public struct MivioSettingsView: View {
-    public init() {}
-    
-    public var body: some View {
-        NavigationStack {
-            ZStack {
-                MivioTheme.background.ignoresSafeArea()
-                VStack(spacing: 16) {
-                    Image(systemName: "gearshape.fill")
-                        .font(.system(size: 60))
-                        .foregroundStyle(MivioTheme.accent.opacity(0.7))
-                    Text("Settings")
-                        .font(.title2.bold())
-                        .foregroundStyle(.white)
-                    Text("App preferences and account details.")
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .navigationTitle("Settings")
-        }
-    }
-}
+
 
 public struct MivioRemoteView: View {
     public init() {}

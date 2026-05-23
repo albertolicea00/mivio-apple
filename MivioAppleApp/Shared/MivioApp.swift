@@ -8,6 +8,14 @@ struct MivioApp: App {
     // shared SwiftData model container
     let container: ModelContainer
     
+    @AppStorage("AppTheme") private var appTheme = "System"
+    
+    var colorScheme: ColorScheme? {
+        if appTheme == "Light" { return .light }
+        if appTheme == "Dark" { return .dark }
+        return nil
+    }
+    
     init() {
         do {
             let schema = Schema([
@@ -27,7 +35,8 @@ struct MivioApp: App {
         WindowGroup {
             MivioMainTabView()
                 .modelContainer(container)
-                .preferredColorScheme(.dark) // Sleek Premium Dark Mode by default
+                .preferredColorScheme(colorScheme)
+                // .tint() logic to be added if needed
         }
     }
 }
