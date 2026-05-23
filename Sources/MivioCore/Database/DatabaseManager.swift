@@ -19,7 +19,7 @@ public final class DatabaseManager {
                 Metadata.self,
                 WatchProgress.self
             ])
-            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false, cloudKitDatabase: .none)
             self.container = try ModelContainer(for: schema, configurations: [config])
         } catch {
             fatalError("Could not initialize SwiftData ModelContainer: \(error.localizedDescription)")

@@ -183,6 +183,9 @@ public struct MivioHomeScreen: View {
             .navigationDestination(for: MediaItem.self) { item in
                 MivioDetailScreen(item: item)
             }
+            .refreshable {
+                await LibraryManager.shared.syncLocalDocuments(context: mediaItems.first?.modelContext ?? DatabaseManager.shared.context)
+            }
         }
     }
 }
@@ -334,74 +337,8 @@ public struct MivioDetailScreen: View {
                 .padding(.horizontal, 24)
             }
         }
-        #if os(macOS)
-        .sheet(isPresented: $showingPlayer) {
-            MivioPlayerView(videoUrl: URL(string: item.path) ?? URL(fileURLWithPath: item.path))
-                .frame(minWidth: 800, minHeight: 450)
-        }
-        #else
         .fullScreenCover(isPresented: $showingPlayer) {
-            MivioPlayerView(videoUrl: URL(string: item.path) ?? URL(fileURLWithPath: item.path))
-        }
-        #endif
-    }
-}
-
-// MARK: - Premium Playback Screen (AVPlayer Native Wrapper)
-public struct MivioPlayerView: View {
-    let videoUrl: URL
-    @Environment(\.dismiss) private var dismiss
-    @State private var player: AVPlayer?
-    
-    public init(videoUrl: URL) {
-        self.videoUrl = videoUrl
-    }
-    
-    public var body: some View {
-        ZStack {
-            Color.black
-                .ignoresSafeArea()
-            
-            if let player = player {
-                VideoPlayer(player: player)
-                    .ignoresSafeArea()
-                    .onAppear {
-                        player.play()
-                    }
-            } else {
-                ProgressView("Buffering stream...")
-                    .tint(.white)
-                    .foregroundStyle(.white)
-            }
-            
-            // Top Translucent Back Button Overlay
-            VStack {
-                HStack {
-                    Button {
-                        player?.pause()
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 18, weight: .bold))
-                            .padding(12)
-                            .background(.black.opacity(0.5))
-                            .foregroundStyle(.white)
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-                    .padding(.leading, 20)
-                    .padding(.top, 20)
-                    Spacer()
-                }
-                Spacer()
-            }
-        }
-        .onAppear {
-            self.player = AVPlayer(url: videoUrl)
-        }
-        .onDisappear {
-            self.player?.pause()
-            self.player = nil
+            MivioPlayerView(item: item)
         }
     }
 }

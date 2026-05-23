@@ -5,9 +5,6 @@ import SwiftData
 
 @main
 struct MivioApp: App {
-    // shared SwiftData model container
-    let container: ModelContainer
-    
     @AppStorage("AppTheme") private var appTheme = "System"
     
     var colorScheme: ColorScheme? {
@@ -17,24 +14,12 @@ struct MivioApp: App {
     }
     
     init() {
-        do {
-            let schema = Schema([
-                Source.self,
-                MediaItem.self,
-                Metadata.self,
-                WatchProgress.self
-            ])
-            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-            self.container = try ModelContainer(for: schema, configurations: [config])
-        } catch {
-            fatalError("Could not initialize SwiftData ModelContainer: \(error.localizedDescription)")
-        }
         setupFilesDirectory()
     }
     
     private func setupFilesDirectory() {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let dummyFileURL = documentsURL.appendingPathComponent("Place media here to add them")
+        let dummyFileURL = documentsURL.appendingPathComponent("Place media here.txt")
         if !FileManager.default.fileExists(atPath: dummyFileURL.path) {
             let text = "Place video files here"
             try? text.write(to: dummyFileURL, atomically: true, encoding: .utf8)
@@ -44,9 +29,12 @@ struct MivioApp: App {
     var body: some Scene {
         WindowGroup {
             MivioMainTabView()
-                .modelContainer(container)
+                .modelContainer(DatabaseManager.shared.container)
                 .preferredColorScheme(colorScheme)
-                // .tint() logic to be added if needed
+                .task {
+                    // Kick off a sync when the app boots up
+                    await LibraryManager.shared.syncLocalDocuments(context: DatabaseManager.shared.context)
+                }
         }
     }
 }
