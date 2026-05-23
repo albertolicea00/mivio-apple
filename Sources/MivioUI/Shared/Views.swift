@@ -9,10 +9,10 @@ public enum MivioTheme {
     public static let background = Color(red: 0.05, green: 0.05, blue: 0.08)
     public static let cardBackground = Color(red: 0.11, green: 0.11, blue: 0.16)
     
-    // Brand Colors
-    public static let brandPrimary = Color(red: 241/255, green: 73/255, blue: 17/255) // #F14911
-    public static let brandSecondary = Color(red: 249/255, green: 129/255, blue: 2/255) // #F98102
-    public static let brandTertiary = Color(red: 254/255, green: 193/255, blue: 149/255) // #FEC195
+    // Brand Colors (loaded from Assets.xcassets)
+    public static let brandPrimary = Color("BrandPrimary", bundle: .module)
+    public static let brandSecondary = Color("BrandSecondary", bundle: .module)
+    public static let brandTertiary = Color("BrandTertiary", bundle: .module)
     
     public static let accent = brandPrimary
     public static let glassColor = Color.white.opacity(0.08)

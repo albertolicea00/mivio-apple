@@ -38,6 +38,9 @@ let package = Package(
             dependencies: [
                 "MivioCore",
                 .product(name: "Kingfisher", package: "Kingfisher")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(
