@@ -8,7 +8,13 @@ import MivioCore
 public enum MivioTheme {
     public static let background = Color(red: 0.05, green: 0.05, blue: 0.08)
     public static let cardBackground = Color(red: 0.11, green: 0.11, blue: 0.16)
-    public static let accent = Color(red: 0.95, green: 0.72, blue: 0.22) // Elegant Gold
+    
+    // Brand Colors
+    public static let brandPrimary = Color(red: 241/255, green: 73/255, blue: 17/255) // #F14911
+    public static let brandSecondary = Color(red: 249/255, green: 129/255, blue: 2/255) // #F98102
+    public static let brandTertiary = Color(red: 254/255, green: 193/255, blue: 149/255) // #FEC195
+    
+    public static let accent = brandPrimary
     public static let glassColor = Color.white.opacity(0.08)
 }
 
@@ -97,7 +103,6 @@ public struct MediaItemCard: View {
 // MARK: - Premium Home Screen
 public struct MivioHomeScreen: View {
     @Query private var mediaItems: [MediaItem]
-    @State private var searchText = ""
     
     // Adaptive Columns based on platform
     private var columns: [GridItem] {
@@ -163,11 +168,9 @@ public struct MivioHomeScreen: View {
                     .padding(.horizontal, 24)
                 }
             }
-            .navigationTitle("Mivio")
             .navigationDestination(for: MediaItem.self) { item in
                 MivioDetailScreen(item: item)
             }
-            .searchable(text: $searchText, prompt: "Search movies and series...")
         }
     }
 }
@@ -387,6 +390,187 @@ public struct MivioPlayerView: View {
         .onDisappear {
             self.player?.pause()
             self.player = nil
+        }
+    }
+}
+
+// MARK: - Main Tab Navigation
+public struct MivioMainTabView: View {
+    @State private var selectedTab = 2 // Start on Home
+    
+    public init() {}
+    
+    public var body: some View {
+        TabView(selection: $selectedTab) {
+            MivioRemoteView()
+                .tabItem {
+                    Label("Remote", systemImage: "network")
+                }
+                .tag(0)
+            
+            MivioFilesView()
+                .tabItem {
+                    Label("Files", systemImage: "folder.fill")
+                }
+                .tag(1)
+            
+            MivioHomeScreen()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+                .tag(2)
+            
+            MivioSearchView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+                .tag(3)
+            
+            MivioSettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
+                .tag(4)
+        }
+        .tint(MivioTheme.accent) // Apple Music uses an accent color for selected tabs
+        // To ensure the TabBar blends well with dark mode:
+        .onAppear {
+            #if os(iOS)
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor(MivioTheme.background)
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+            #endif
+        }
+    }
+}
+
+// MARK: - Placeholder Views
+
+public struct MivioFilesView: View {
+    public init() {}
+    
+    public var body: some View {
+        NavigationStack {
+            ZStack {
+                MivioTheme.background.ignoresSafeArea()
+                VStack(spacing: 16) {
+                    Image(systemName: "folder.fill")
+                        .font(.system(size: 60))
+                        .foregroundStyle(MivioTheme.accent.opacity(0.7))
+                    Text("Files")
+                        .font(.title2.bold())
+                        .foregroundStyle(.white)
+                    Text("Browse local and cloud files here.")
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .navigationTitle("Files")
+        }
+    }
+}
+
+public struct MivioSearchView: View {
+    @State private var searchText = ""
+    @Query private var mediaItems: [MediaItem]
+    
+    public init() {}
+    
+    var filteredItems: [MediaItem] {
+        if searchText.isEmpty {
+            return mediaItems
+        } else {
+            return mediaItems.filter { item in
+                let title = item.metadata?.title ?? item.fileName
+                return title.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
+    
+    public var body: some View {
+        NavigationStack {
+            ZStack {
+                MivioTheme.background.ignoresSafeArea()
+                
+                if filteredItems.isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: "magnifyingglass")
+                            .font(.system(size: 60))
+                            .foregroundStyle(MivioTheme.accent.opacity(0.7))
+                        Text(searchText.isEmpty ? "Search Your Library" : "No Results")
+                            .font(.title2.bold())
+                            .foregroundStyle(.white)
+                        Text(searchText.isEmpty ? "Find movies and series you've added." : "Try a different spelling.")
+                            .foregroundStyle(.secondary)
+                    }
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+                            ForEach(filteredItems) { item in
+                                NavigationLink(value: item) {
+                                    MediaItemCard(item: item)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationTitle("Search")
+            .navigationDestination(for: MediaItem.self) { item in
+                MivioDetailScreen(item: item)
+            }
+            .searchable(text: $searchText, prompt: "Search movies and series...")
+        }
+    }
+}
+
+public struct MivioSettingsView: View {
+    public init() {}
+    
+    public var body: some View {
+        NavigationStack {
+            ZStack {
+                MivioTheme.background.ignoresSafeArea()
+                VStack(spacing: 16) {
+                    Image(systemName: "gearshape.fill")
+                        .font(.system(size: 60))
+                        .foregroundStyle(MivioTheme.accent.opacity(0.7))
+                    Text("Settings")
+                        .font(.title2.bold())
+                        .foregroundStyle(.white)
+                    Text("App preferences and account details.")
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .navigationTitle("Settings")
+        }
+    }
+}
+
+public struct MivioRemoteView: View {
+    public init() {}
+    
+    public var body: some View {
+        NavigationStack {
+            ZStack {
+                MivioTheme.background.ignoresSafeArea()
+                VStack(spacing: 16) {
+                    Image(systemName: "network")
+                        .font(.system(size: 60))
+                        .foregroundStyle(MivioTheme.accent.opacity(0.7))
+                    Text("Remote")
+                        .font(.title2.bold())
+                        .foregroundStyle(.white)
+                    Text("Connect to Jellyfin, Emby, and other services.")
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                }
+            }
+            .navigationTitle("Remote")
         }
     }
 }

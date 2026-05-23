@@ -25,7 +25,7 @@ struct MivioApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MivioHomeScreen()
+            MivioMainTabView()
                 .modelContainer(container)
                 .preferredColorScheme(.dark) // Sleek Premium Dark Mode by default
         }
