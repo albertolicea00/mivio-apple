@@ -70,7 +70,7 @@ graph TD
 The project is designed with a **Swift Package-based Multiplatform architecture** to keep the core and user-interface modular, clean, and easily testable:
 
 ```text
-Mivio_apple/
+mivio-apple/
 ├── Package.swift                     # Unified package definition for core modules
 ├── Sources/
 │   ├── MivioCore/                    # Core Business Logic & Shared Data Layer
@@ -139,8 +139,8 @@ Configured with **MivioTheme**, a highly refined visual specification utilizing 
 ### Setup and Running the Project
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/Mivio_apple.git
-   cd Mivio_apple
+   git clone https://github.com/albertolicea00/mivio-apple.git
+   cd mivio-apple
    ```
 
 2. **Open the Workspace in Xcode:**

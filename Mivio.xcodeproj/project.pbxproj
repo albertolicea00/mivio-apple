@@ -32,7 +32,7 @@
 		73DA775C13922CF9435A6E0B /* MivioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MivioApp.swift; sourceTree = "<group>"; };
 		978CE2605B5253964C906C53 /* Mivio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9FD87AE84125CC7B8191A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CCAE5D2FBA87160E5EE645BE /* Mivio_apple */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Mivio_apple; path = .; sourceTree = SOURCE_ROOT; };
+		CCAE5D2FBA87160E5EE645BE /* mivio-apple */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mivio-apple; path = .; sourceTree = SOURCE_ROOT; };
 		CFAA41926BF99B1E9B31CD5A /* Mivio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -99,7 +99,7 @@
 		5B1A285D4EBF11C35B568E99 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				CCAE5D2FBA87160E5EE645BE /* Mivio_apple */,
+				CCAE5D2FBA87160E5EE645BE /* mivio-apple */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
