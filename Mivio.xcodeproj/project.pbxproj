@@ -26,7 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0CE5C69E165DAA067774AAE8 /* Mivio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CE5C69E165DAA067774AAE8 /* Mivio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFD3B6CC794BBB03D69D7A7 /* Mivio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73DA775C13922CF9435A6E0B /* MivioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MivioApp.swift; sourceTree = "<group>"; };
 		978CE2605B5253964C906C53 /* Mivio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mivio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,9 +218,6 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					71CA57F6A7FCAE0B64D03C48 = {
-						DevelopmentTeam = "";
-					};
 					B07949FE3ECA2B562B43969D = {
 						DevelopmentTeam = "";
 					};
@@ -495,7 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-iOS";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7W3D3JL6PV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -519,7 +516,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-iOS";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7W3D3JL6PV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Mivio;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
