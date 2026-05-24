@@ -34,34 +34,29 @@ Mivio has transitioned from a fragmented Kotlin/Jetpack library stack to a cohes
 
 ---
 
-## 🎨 Platform-Specific Experience Goals
+## 🎨 Platform Features & Limitations
 
-Mivio avoids a generic "one-size-fits-all" interface. We reuse **90%+ of the underlying business logic, models, and network code** while styling visual layouts to fit the unique hardware paradigms of each device:
+Mivio is a single Xcode project with multiple targets, sharing a robust core for home server connections (Plex/Jellyfin/Emby), metadata management, and data models. However, the experience is tailored per platform:
 
-```mermaid
-graph TD
-    SharedLogic[Shared Core: SwiftData Models, TMDB, WebDAV, SMB, GuessItParser]
-    SharedLogic --> iOS[iOS iPhone/iPad App]
-    SharedLogic --> macOS[macOS App]
-    SharedLogic --> visionOS[visionOS Spatial App]
-    SharedLogic --> tvOS[tvOS Home Theater App]
-    
-    iOS --> iOSUI[TabBar Navigation, Swipe Actions, Custom Player Controls]
-    macOS --> MacUI[Sidebar split-view, Hover effects, Menu bar integration, Drag-and-Drop]
-    visionOS --> VisionUI[Glassmorphic windows, Eye/Hand gestures, Immersive Cinema theater]
-    tvOS --> TvUI[High-contrast poster grid, Siri Remote tracking, Parallax cards]
-    
-    style SharedLogic fill:#223,stroke:#e5b82a,stroke-width:2px,color:#fff
-    style iOS fill:#112,stroke:#09f,stroke-width:1px,color:#fff
-    style macOS fill:#112,stroke:#0b3,stroke-width:1px,color:#fff
-    style visionOS fill:#112,stroke:#93f,stroke-width:1px,color:#fff
-    style tvOS fill:#112,stroke:#f39,stroke-width:1px,color:#fff
-```
+### 📱 iOS & 💻 macOS
+- ✅ **Local Multi-Account**: Each user saves their progress independently on the same device.
+- ✅ **Local File Reading**: Full access to internal storage and local files.
+- ✅ **Metadata Management**: Sort and display metadata (locally fetched or from the server).
+- ✅ **Native Player**: Fully optimized playback using `AVPlayer`.
 
-- **📱 iOS (iPhone & iPad)**: Dynamic grids, context menus for editing sources/metadata, native Picture-in-Picture (PiP), and fluid swipe gestures to toggle watched states.
-- **💻 macOS**: Multi-column split views with sidebar, resizable desktop windows, menu-bar status widgets, hover states, drag-and-drop folder mapping, and extensive keyboard shortcuts.
-- **🥽 visionOS (Apple Vision Pro)**: Beautiful glassmorphic structures, floating dynamic windows that project subtle backdrops, hand/eye tracking hover animations, and a fully immersive virtual cinema stage during full-screen playback.
-- **📺 tvOS (Apple TV)**: Grid displays with large, card-based assets that lift and tilt with parallax shadows upon Siri Remote focus, fully optimized scroll tracks, and native system media controls.
+### 📺 tvOS
+- ❌ **No Local Multi-Account**: Accounts are managed by the server.
+- ❌ **No Local/USB Reading**: Operates exclusively as a streaming client.
+- ✅ **Pure Server Client**: Designed exclusively to consume content from your home servers.
+- ✅ **Native tvOS Player**: Hardware-accelerated decoding.
+
+### 🥽 visionOS
+- ❌ **No Local Multi-Account**: Accounts are managed by the server.
+- ❌ **No Local/USB Reading**: Operates exclusively as a streaming client.
+- ✅ **Home Server Client**: Stream your media directly to spatial windows.
+- ✅ **Immersive Environments**: Downloadable USDZ/RealityKit immersive theaters.
+- ✅ **Internal Marketplace**: Community-driven marketplace to upload and download 3D models and environments.
+- ✅ **Native Spatial Player**: Integration of `AVPlayer` with RealityKit for a true spatial experience.
 
 ---
 
