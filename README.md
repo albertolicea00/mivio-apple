@@ -4,7 +4,7 @@
 [![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-blue.svg?style=flat-square)](https://developer.apple.com/xcode/swiftui/)
 [![SwiftData](https://img.shields.io/badge/Database-SwiftData-red.svg?style=flat-square)](https://developer.apple.com/documentation/swiftdata)
 [![Platform Compatibility](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20visionOS-brightgreen.svg?style=flat-square)](#platform-specific-goals)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![License: Non-Commercial](https://img.shields.io/badge/License-Non_Commercial-red.svg?style=flat-square)](LICENSE)
 
 **Mivio** is a premium, high-performance media management and playback application meticulously designed for the unified Apple Ecosystem. Rewritten from the ground up to move beyond the traditional Android architecture, Mivio leverages modern Swift, SwiftUI, and SwiftData to deliver an elegant, fast, and native media cataloging and streaming experience across **iOS, macOS, visionOS, and tvOS**.
 
@@ -183,4 +183,4 @@ For vulnerability reporting or security-related matters, see [SECURITY.md](SECUR
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **Mivio Source-Available End User License Agreement (EULA)**. Commercial use, monetization, and unauthorized redistribution are strictly prohibited. See the [LICENSE](LICENSE) file for details.
