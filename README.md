@@ -6,31 +6,31 @@
 [![Platform Compatibility](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20visionOS-brightgreen.svg?style=flat-square)](#platform-specific-goals)
 [![License: Non-Commercial](https://img.shields.io/badge/License-Non_Commercial-red.svg?style=flat-square)](LICENSE)
 
-**Mivio** is a premium, high-performance media management and playback application meticulously designed for the unified Apple Ecosystem. Rewritten from the ground up to move beyond the traditional Android architecture, Mivio leverages modern Swift, SwiftUI, and SwiftData to deliver an elegant, fast, and native media cataloging and streaming experience across **iOS, macOS, visionOS, and tvOS**.
+**Mivio** is a premium, high-performance media management and playback application meticulously designed for the unified Apple Ecosystem. Mivio leverages modern Swift, SwiftUI, and SwiftData to deliver an elegant, fast, and native media cataloging and streaming experience across **iOS, macOS, visionOS, and tvOS**.
 
 Whether scanning local folders on a Mac, connecting to high-speed home network shares via **SMB**, or streaming over a secure cloud-based **WebDAV** server, Mivio handles metadata collection, naming parsing, watch progress tracking, and media playback seamlessly.
 
 ---
 
-## 🗺️ Architectural Blueprint: Android vs. Apple Ecosystem
+## 🗺️ Architectural Blueprint
 
-Mivio has transitioned from a fragmented Kotlin/Jetpack library stack to a cohesive, type-safe, and highly performant Apple native stack:
+Mivio is built on a cohesive, type-safe, and highly performant Apple native stack:
 
-| Feature / Capability | Android Stack | Apple Ecosystem (Unified Stack) |
-| :--- | :--- | :--- |
-| **Language** | Kotlin | **Swift 6** (Modern Swift with strict concurrency check) |
-| **UI Framework** | Jetpack Compose (Material 3) | **SwiftUI** (Native Apple Human Interface Guidelines) |
-| **Navigation** | Jetpack Navigation | SwiftUI Native Navigation (`NavigationStack`, `NavigationSplitView`) |
-| **Database (ORM)** | Room (SQLite) | **SwiftData** (SQLite backing with CoreData power, native `@Model` macro) |
-| **DI** | Dagger Hilt | Native Protocol-Oriented DI / SwiftUI `@Environment` |
-| **Networking** | Retrofit2 + Gson | Native `URLSession` + `Async/Await` + `Codable` |
-| **Image Loading** | Coil | **Kingfisher** (highly performant, disk & memory caching) |
-| **Video Player** | Media3 ExoPlayer | **AVKit / AVPlayer** (native PIP, hardware acceleration, spatial visionOS) |
-| **Async / Concurrency** | Coroutines & Flow | Swift Concurrency (`async/await`, `Actors`, `AsyncSequence`) |
-| **Local Scanning** | `LocalMediaScannerImpl` | `FileManager` + native POSIX APIs |
-| **SMB Integration** | `jcifs-ng` | **AMSMB2** (Swift/ObjC client built on high-performance `libsmb2`) |
-| **WebDAV Integration**| `Sardine` (OkHttp) | Custom Async WebDAV Service (built on native `URLSession`) |
-| **Media Parsing** | `GuessItParser` (Regex) | Custom **Swift Regex DSL** parser |
+| Feature / Capability | Apple Ecosystem (Unified Stack) |
+| :--- | :--- |
+| **Language** | **Swift 6** (Modern Swift with strict concurrency check) |
+| **UI Framework** | **SwiftUI** (Native Apple Human Interface Guidelines) |
+| **Navigation** | SwiftUI Native Navigation (`NavigationStack`, `NavigationSplitView`) |
+| **Database (ORM)** | **SwiftData** (SQLite backing with CoreData power, native `@Model` macro) |
+| **DI** | Native Protocol-Oriented DI / SwiftUI `@Environment` |
+| **Networking** | Native `URLSession` + `Async/Await` + `Codable` |
+| **Image Loading** | **Kingfisher** (highly performant, disk & memory caching) |
+| **Video Player** | **AVKit / AVPlayer** (native PIP, hardware acceleration, spatial visionOS) |
+| **Async / Concurrency** | Swift Concurrency (`async/await`, `Actors`, `AsyncSequence`) |
+| **Local Scanning** | `FileManager` + native POSIX APIs |
+| **SMB Integration** | **AMSMB2** (Swift/ObjC client built on high-performance `libsmb2`) |
+| **WebDAV Integration**| Custom Async WebDAV Service (built on native `URLSession`) |
+| **Media Parsing** | Custom **Swift Regex DSL** parser |
 
 ---
 
