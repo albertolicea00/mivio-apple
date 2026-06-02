@@ -57,7 +57,7 @@ public final class LibraryManager {
         let parsed = MivioGuessItParser.parse(fileName: item.fileName)
         
         // TODO: Replace with a real API key or fetch from AppStorage/Keychain
-        let tmdb = TMDBService(apiKey: "c01c0c550df2c1c68f2f45cc31f24d77") 
+        let tmdb = TMDBService(apiKey: KeychainHelper.shared.tmdbApiKey ?? "")
         do {
             let metadata = try await tmdb.fetchMetadata(for: parsed)
             item.metadata = metadata
