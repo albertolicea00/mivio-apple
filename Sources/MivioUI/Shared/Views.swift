@@ -135,22 +135,23 @@ private struct HomeMediaRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            NavigationLink(value: HomeSectionRoute(title: title, items: items)) {
-                HStack(spacing: 6) {
-                    Text(title)
-                        .font(.system(.title3, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-                    Spacer()
-                    Text("See All")
-                        .font(.subheadline)
-                        .foregroundStyle(MivioTheme.accent)
-                    Image(systemName: "chevron.right")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(MivioTheme.accent)
+            HStack(spacing: 6) {
+                Text(title)
+                    .font(.system(.title3, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundStyle(.primary)
+                Spacer()
+                NavigationLink(value: HomeSectionRoute(title: title, items: items)) {
+                    HStack(spacing: 4) {
+                        Text("See All")
+                            .font(.subheadline)
+                        Image(systemName: "chevron.right")
+                            .font(.caption.weight(.semibold))
+                    }
+                    .foregroundStyle(MivioTheme.accent)
                 }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 16) {
