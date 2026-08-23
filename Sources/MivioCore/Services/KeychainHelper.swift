@@ -9,8 +9,15 @@ public final class KeychainHelper: Sendable {
 
     private init() {}
 
+    /// Returns the user's stored key if they've set one in Settings; otherwise falls back
+    /// to the app-bundled default key (from the untracked Secrets.swift), if any.
     public var tmdbApiKey: String? {
-        get { read(account: tmdbAccount) }
+        get {
+            if let stored = read(account: tmdbAccount), !stored.isEmpty {
+                return stored
+            }
+            return Secrets.tmdbDefaultAPIKey.isEmpty ? nil : Secrets.tmdbDefaultAPIKey
+        }
         set {
             if let newValue {
                 save(newValue, account: tmdbAccount)

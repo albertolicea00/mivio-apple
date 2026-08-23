@@ -461,7 +461,9 @@ struct CollectionsSettingsView: View {
 struct MetadataSettingsView: View {
     @AppStorage("ScraperSource") private var scraperSource = "TMDB"
     @State private var customRegexes: [String] = ["^(.*?)\\.[S]?([0-9]+)[E|x]([0-9]+)"]
-    
+    @State private var tmdbApiKey: String = KeychainHelper.shared.tmdbApiKey ?? ""
+    @State private var didSaveKey = false
+
     var body: some View {
         Form {
             Section(header: Text("Scraper Source")) {
@@ -471,6 +473,22 @@ struct MetadataSettingsView: View {
                     Text("Local NFO Only").tag("Local")
                 }
             }
+
+            Section(header: Text("TMDB API Key"), footer: Text("Required to download posters, artwork, and metadata. Get a free key at themoviedb.org/settings/api. Leave blank to use the app's bundled default key, if one is configured.")) {
+                SecureField("API Key", text: $tmdbApiKey)
+                #if os(iOS) || os(tvOS)
+                    .textInputAutocapitalization(.never)
+                #endif
+                    .autocorrectionDisabled()
+                Button(didSaveKey ? "Saved" : "Save Key") {
+                    KeychainHelper.shared.tmdbApiKey = tmdbApiKey.isEmpty ? nil : tmdbApiKey
+                    didSaveKey = true
+                }
+                .foregroundStyle(didSaveKey ? .secondary : MivioTheme.accent)
+                .disabled(didSaveKey)
+                .onChange(of: tmdbApiKey) { didSaveKey = false }
+            }
+
             Section(header: Text("Custom Regex Parsing"), footer: Text("Add custom regular expressions to help Mivio extract TV Show names, seasons, and episodes from complex file names.")) {
                 ForEach(customRegexes, id: \.self) { regex in
                     Text(regex)

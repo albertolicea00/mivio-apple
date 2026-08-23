@@ -48,6 +48,10 @@ DerivedData/
 .build/
 .swiftpm/
 !.swiftpm/configuration/
+
+# Local secrets — never commit real API keys
+# ------------------------------------------------------------------------------
+Sources/MivioCore/Services/Secrets.swift
 !.swiftpm/xcode/
 # Note: Keep package configurations tracked, but ignore user-specific settings
 .swiftpm/xcode/xcuserdata/
