@@ -112,76 +112,190 @@ public struct MediaItemCard: View {
     }
 }
 
-// MARK: - Premium Home Screen
-public struct MivioHomeScreen: View {
-    @Query private var mediaItems: [MediaItem]
-    
-    // Adaptive Columns based on platform
+// MARK: - Home Section Route
+
+private struct HomeSectionRoute: Hashable {
+    let title: String
+    let items: [MediaItem]
+}
+
+// MARK: - Home Media Row (horizontal scroll)
+
+private struct HomeMediaRow: View {
+    let title: String
+    let items: [MediaItem]
+
+    private var cardWidth: CGFloat {
+        #if os(tvOS)
+        return 200
+        #else
+        return 130
+        #endif
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            NavigationLink(value: HomeSectionRoute(title: title, items: items)) {
+                HStack(spacing: 6) {
+                    Text(title)
+                        .font(.system(.title3, design: .rounded))
+                        .fontWeight(.bold)
+                        .foregroundStyle(.white)
+                    Spacer()
+                    Text("See All")
+                        .font(.subheadline)
+                        .foregroundStyle(MivioTheme.accent)
+                    Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(MivioTheme.accent)
+                }
+            }
+            .buttonStyle(.plain)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 16) {
+                    ForEach(items.prefix(20)) { item in
+                        NavigationLink(value: item) {
+                            MediaItemCard(item: item)
+                                .frame(width: cardWidth)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.horizontal, 2)
+                .padding(.vertical, 4)
+            }
+        }
+    }
+}
+
+// MARK: - Home Section Detail (full grid)
+
+private struct HomeSectionDetailScreen: View {
+    let title: String
+    let items: [MediaItem]
+
     private var columns: [GridItem] {
         #if os(tvOS)
         return Array(repeating: GridItem(.fixed(200), spacing: 24), count: 6)
         #elseif os(macOS)
         return Array(repeating: GridItem(.flexible(), spacing: 18), count: 5)
         #else
-        return Array(repeating: GridItem(.flexible(), spacing: 12), count: 2) // Mobile adaptive layout
+        return Array(repeating: GridItem(.flexible(), spacing: 12), count: 2)
         #endif
     }
-    
+
+    var body: some View {
+        ZStack {
+            MivioTheme.background.ignoresSafeArea()
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 24) {
+                    ForEach(items) { item in
+                        NavigationLink(value: item) {
+                            MediaItemCard(item: item)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.horizontal, 24)
+                .padding(.top, 12)
+            }
+        }
+        .navigationTitle(title)
+    }
+}
+
+// MARK: - Premium Home Screen
+public struct MivioHomeScreen: View {
+    @Query private var mediaItems: [MediaItem]
+    @ObservedObject private var sectionsStore = HomeSectionsStore.shared
+
     public init() {}
-    
+
+    private func items(for kind: HomeSectionKind) -> [MediaItem] {
+        switch kind {
+        case .recentlyAdded:
+            return mediaItems.sorted { $0.addedAt > $1.addedAt }
+        case .movies:
+            return mediaItems.filter { $0.type == .movie }
+        case .series:
+            return mediaItems.filter { $0.type == .episode }
+        case .anime:
+            return mediaItems.filter { $0.metadata?.isAnime == true }
+        case .topRated:
+            return mediaItems
+                .filter { ($0.metadata?.rating ?? 0) > 0 }
+                .sorted { ($0.metadata?.rating ?? 0) > ($1.metadata?.rating ?? 0) }
+        case .byYear:
+            return mediaItems
+                .filter { $0.metadata?.year != nil }
+                .sorted { ($0.metadata?.year ?? 0) > ($1.metadata?.year ?? 0) }
+        case .byGenre:
+            return []
+        }
+    }
+
+    /// Genre isn't a single row: fans out into one row per genre found in the library.
+    private var genreGroups: [(genre: String, items: [MediaItem])] {
+        var grouped: [String: [MediaItem]] = [:]
+        for item in mediaItems {
+            for genre in item.metadata?.genres ?? [] {
+                grouped[genre, default: []].append(item)
+            }
+        }
+        return grouped.keys.sorted().map { genre in (genre: genre, items: grouped[genre] ?? []) }
+    }
+
     public var body: some View {
         NavigationStack {
             ZStack {
                 MivioTheme.background
                     .ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 24) {
-                        // Section Header
-                        HStack {
-                            Text("Your Library")
-                                .font(.system(.title, design: .rounded))
-                                .fontWeight(.bold)
-                                .foregroundStyle(.white)
-                            Spacer()
-                        }
-                        .padding(.top, 12)
-                        
-                        if mediaItems.isEmpty {
-                            // Empty Library Display
-                            VStack(spacing: 16) {
-                                Spacer(minLength: 80)
-                                Image(systemName: "popcorn")
-                                    .font(.system(size: 60))
-                                    .foregroundStyle(MivioTheme.accent.opacity(0.7))
-                                Text("No Media Discovered")
-                                    .font(.system(.headline, design: .rounded))
-                                    .foregroundStyle(.white)
-                                Text("Connect local, SMB, or WebDAV folders in Sources to populate your library.")
-                                    .font(.system(.subheadline, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal, 32)
-                                Spacer(minLength: 80)
-                            }
-                            .frame(maxWidth: .infinity)
-                        } else {
-                            // Gorgeous LazyGrid displaying content
-                            LazyVGrid(columns: columns, spacing: 24) {
-                                ForEach(mediaItems) { item in
-                                    NavigationLink(value: item) {
-                                        MediaItemCard(item: item)
+
+                if mediaItems.isEmpty {
+                    VStack(spacing: 16) {
+                        Spacer(minLength: 80)
+                        Image(systemName: "popcorn")
+                            .font(.system(size: 60))
+                            .foregroundStyle(MivioTheme.accent.opacity(0.7))
+                        Text("No Media Discovered")
+                            .font(.system(.headline, design: .rounded))
+                            .foregroundStyle(.white)
+                        Text("Connect local, SMB, or WebDAV folders in Sources to populate your library.")
+                            .font(.system(.subheadline, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                        Spacer(minLength: 80)
+                    }
+                    .frame(maxWidth: .infinity)
+                } else {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 28) {
+                            ForEach(sectionsStore.sections.filter(\.isEnabled)) { config in
+                                if config.kind == .byGenre {
+                                    ForEach(genreGroups, id: \.genre) { group in
+                                        HomeMediaRow(title: group.genre, items: group.items)
                                     }
-                                    .buttonStyle(.plain)
+                                } else {
+                                    let rowItems = items(for: config.kind)
+                                    if !rowItems.isEmpty {
+                                        HomeMediaRow(title: config.kind.title, items: rowItems)
+                                    }
                                 }
                             }
                         }
+                        .padding(.horizontal, 24)
+                        .padding(.top, 12)
                     }
-                    .padding(.horizontal, 24)
                 }
             }
+            .navigationTitle("Mivio")
             .navigationDestination(for: MediaItem.self) { item in
                 MivioDetailScreen(item: item)
+            }
+            .navigationDestination(for: HomeSectionRoute.self) { route in
+                HomeSectionDetailScreen(title: route.title, items: route.items)
             }
             .refreshable {
                 await LibraryManager.shared.syncLocalDocuments(context: mediaItems.first?.modelContext ?? DatabaseManager.shared.context)

@@ -36,6 +36,23 @@ public struct TmdbCreditsResponse: Codable, Sendable {
     public let cast: [TmdbCastMember]
 }
 
+public struct TmdbGenre: Codable, Sendable {
+    public let id: Int
+    public let name: String
+}
+
+public struct TmdbDetailsResponse: Codable, Sendable {
+    public let genres: [TmdbGenre]
+    public let originalLanguage: String?
+    public let credits: TmdbCreditsResponse?
+
+    enum CodingKeys: String, CodingKey {
+        case genres
+        case originalLanguage = "original_language"
+        case credits
+    }
+}
+
 public final class TMDBService: Sendable {
     private let apiKey: String
     private let session: URLSession
@@ -78,19 +95,26 @@ public final class TMDBService: Sendable {
             throw NSError(domain: "TMDBService", code: 404, userInfo: [NSLocalizedDescriptionKey: "No TMDB results found for query: \(query)"])
         }
         
-        // Fetch credits (cast list)
-        let creditsPath = type == .movie ? "movie/\(firstResult.id)/credits" : "tv/\(firstResult.id)/credits"
-        var creditsComponents = URLComponents(string: "https://api.themoviedb.org/3/\(creditsPath)")!
-        creditsComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
-        
+        // Fetch details (genres, original language) plus credits (cast list) in one call
+        let detailsPath = type == .movie ? "movie/\(firstResult.id)" : "tv/\(firstResult.id)"
+        var detailsComponents = URLComponents(string: "https://api.themoviedb.org/3/\(detailsPath)")!
+        detailsComponents.queryItems = [
+            URLQueryItem(name: "api_key", value: apiKey),
+            URLQueryItem(name: "append_to_response", value: "credits")
+        ]
+
         var castList: [String] = []
-        if let creditsUrl = creditsComponents.url {
+        var genreNames: [String] = []
+        var originalLanguage: String? = nil
+        if let detailsUrl = detailsComponents.url {
             do {
-                let (creditsData, _) = try await session.data(from: creditsUrl)
-                let creditsResponse = try JSONDecoder().decode(TmdbCreditsResponse.self, from: creditsData)
-                castList = Array(creditsResponse.cast.prefix(5).map { $0.name })
+                let (detailsData, _) = try await session.data(from: detailsUrl)
+                let details = try JSONDecoder().decode(TmdbDetailsResponse.self, from: detailsData)
+                castList = Array((details.credits?.cast ?? []).prefix(5).map { $0.name })
+                genreNames = details.genres.map { $0.name }
+                originalLanguage = details.originalLanguage
             } catch {
-                // Credits are optional, don't let credit errors block metadata
+                // Details are optional, don't let errors here block basic metadata
             }
         }
         
@@ -115,7 +139,9 @@ public final class TMDBService: Sendable {
             backdropUrlString: backdropUrl,
             synopsis: firstResult.overview ?? "",
             rating: firstResult.voteAverage ?? 0.0,
-            cast: castList
+            cast: castList,
+            genres: genreNames,
+            originalLanguage: originalLanguage
         )
     }
 }

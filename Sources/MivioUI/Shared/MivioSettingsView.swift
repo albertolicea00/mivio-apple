@@ -1,4 +1,5 @@
 import SwiftUI
+import MivioCore
 
 public struct MivioSettingsView: View {
     public init() {}
@@ -40,6 +41,7 @@ public struct MivioSettingsView: View {
                 // Section 2: App Preferences
                 Section(header: Text("App Preferences")) {
                     SettingsRow(icon: "paintpalette.fill", color: .indigo, title: "Appearance", destination: AnyView(AppearanceSettingsView()))
+                    SettingsRow(icon: "square.grid.2x2.fill", color: .purple, title: "Home Sections", destination: AnyView(HomeSectionsSettingsView()))
                     SettingsRow(icon: "hand.raised.fill", color: .blue, title: "Privacy", destination: AnyView(PrivacySettingsView()))
                     
                     Button {
@@ -304,6 +306,59 @@ struct AppearanceSettingsView: View {
             }
         }
         .navigationTitle("Appearance")
+    }
+}
+
+struct HomeSectionsSettingsView: View {
+    @ObservedObject private var sectionsStore = HomeSectionsStore.shared
+    @State private var showingResetAlert = false
+
+    var body: some View {
+        List {
+            Section(header: Text("Sections"), footer: Text("Toggle which sections appear on Home, and drag to reorder them.")) {
+                ForEach(sectionsStore.sections) { config in
+                    HStack(spacing: 16) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(MivioTheme.accent)
+                                .frame(width: 30, height: 30)
+                            Image(systemName: config.kind.icon)
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundStyle(.white)
+                        }
+                        Text(config.kind.title)
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        Toggle("", isOn: Binding(
+                            get: { config.isEnabled },
+                            set: { sectionsStore.setEnabled($0, for: config.kind) }
+                        ))
+                        .labelsHidden()
+                    }
+                    .padding(.vertical, 2)
+                }
+                .onMove { source, destination in
+                    sectionsStore.move(fromOffsets: source, toOffset: destination)
+                }
+            }
+
+            Section {
+                Button("Reset to Default Order") {
+                    showingResetAlert = true
+                }
+                .foregroundStyle(MivioTheme.accent)
+                .alert("Reset Home Sections", isPresented: $showingResetAlert) {
+                    Button("Reset", role: .destructive) { sectionsStore.resetToDefault() }
+                    Button("Cancel", role: .cancel) { }
+                } message: {
+                    Text("This restores the default sections, order, and visibility.")
+                }
+            }
+        }
+        .navigationTitle("Home Sections")
+        #if os(iOS) || os(tvOS)
+        .toolbar { EditButton() }
+        #endif
     }
 }
 

@@ -53,27 +53,29 @@ public final class MediaItem {
     public var typeString: String
     public var size: Int64
     public var fileName: String
-    
+    public var addedAt: Date = Date()
+
     public var source: Source?
-    
+
     @Relationship(deleteRule: .cascade, inverse: \Metadata.mediaItem)
     public var metadata: Metadata?
-    
+
     @Relationship(deleteRule: .cascade, inverse: \WatchProgress.mediaItem)
     public var watchProgress: WatchProgress?
-    
+
     public var type: MediaType {
         get { MediaType(rawValue: typeString) ?? .movie }
         set { typeString = newValue.rawValue }
     }
-    
-    public init(id: UUID = UUID(), path: String, type: MediaType, size: Int64, fileName: String, source: Source? = nil) {
+
+    public init(id: UUID = UUID(), path: String, type: MediaType, size: Int64, fileName: String, source: Source? = nil, addedAt: Date = Date()) {
         self.id = id
         self.path = path
         self.typeString = type.rawValue
         self.size = size
         self.fileName = fileName
         self.source = source
+        self.addedAt = addedAt
     }
 }
 
@@ -88,10 +90,18 @@ public final class Metadata {
     public var synopsis: String
     public var rating: Double
     public var cast: [String]
-    
+    public var genres: [String] = []
+    public var originalLanguage: String?
+
     public var mediaItem: MediaItem?
-    
-    public init(tmdbId: Int? = nil, title: String, year: Int? = nil, posterUrlString: String? = nil, backdropUrlString: String? = nil, synopsis: String = "", rating: Double = 0.0, cast: [String] = []) {
+
+    /// Heuristic: TMDB doesn't have a dedicated "Anime" genre, so this combines the
+    /// "Animation" genre with a Japanese original-language flag.
+    public var isAnime: Bool {
+        genres.contains("Animation") && originalLanguage == "ja"
+    }
+
+    public init(tmdbId: Int? = nil, title: String, year: Int? = nil, posterUrlString: String? = nil, backdropUrlString: String? = nil, synopsis: String = "", rating: Double = 0.0, cast: [String] = [], genres: [String] = [], originalLanguage: String? = nil) {
         self.tmdbId = tmdbId
         self.title = title
         self.year = year
@@ -100,6 +110,8 @@ public final class Metadata {
         self.synopsis = synopsis
         self.rating = rating
         self.cast = cast
+        self.genres = genres
+        self.originalLanguage = originalLanguage
     }
 }
 
