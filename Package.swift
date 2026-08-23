@@ -24,7 +24,9 @@ let package = Package(
     ],
     dependencies: [
         // Modern and efficient image loading for SwiftUI
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.11.0")
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.11.0"),
+        // VLCKit, packaged as prebuilt XCFrameworks for SPM. No visionOS build exists upstream.
+        .package(url: "https://github.com/tylerjonesio/vlckit-spm.git", from: "3.6.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -37,7 +39,8 @@ let package = Package(
             name: "MivioUI",
             dependencies: [
                 "MivioCore",
-                .product(name: "Kingfisher", package: "Kingfisher")
+                .product(name: "Kingfisher", package: "Kingfisher"),
+                .product(name: "VLCKitSPM", package: "vlckit-spm", condition: .when(platforms: [.iOS, .macOS, .tvOS]))
             ],
             resources: [
                 .process("Resources")
