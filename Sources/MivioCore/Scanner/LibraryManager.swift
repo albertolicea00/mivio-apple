@@ -13,17 +13,24 @@ public final class LibraryManager {
         let path = documentsURL.path
         
         // 1. Ensure the default local Source exists.
-        let descriptor = FetchDescriptor<Source>(predicate: #Predicate { $0.path == path })
+        // Matched by type, not path: the sandbox container path changes across
+        // reinstalls, so a stale path would otherwise leave a broken duplicate.
+        let localType = SourceType.local.rawValue
+        let descriptor = FetchDescriptor<Source>(predicate: #Predicate<Source> { $0.typeString == localType })
         let sources = (try? context.fetch(descriptor)) ?? []
-        
+
         let localSource: Source
         if let existing = sources.first {
+            existing.path = path
             localSource = existing
+            for duplicate in sources.dropFirst() {
+                context.delete(duplicate)
+            }
         } else {
             localSource = Source(type: .local, path: path, nickname: "Local Documents")
             context.insert(localSource)
-            try? context.save()
         }
+        try? context.save()
         
         // 2. Scan the source using LocalMediaScanner
         let scanner = LocalMediaScanner()

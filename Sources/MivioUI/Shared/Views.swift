@@ -395,28 +395,152 @@ public struct MivioMainTabView: View {
     }
 }
 
-// MARK: - Placeholder Views
+// MARK: - Files Browser
+
+public struct FileSystemEntry: Identifiable, Hashable {
+    public let id: String
+    public let url: URL
+    public let isDirectory: Bool
+
+    public init(url: URL, isDirectory: Bool) {
+        self.id = url.path
+        self.url = url
+        self.isDirectory = isDirectory
+    }
+}
 
 public struct MivioFilesView: View {
+    @Query private var sources: [MivioCore.Source]
+
     public init() {}
-    
+
+    private var localSource: MivioCore.Source? {
+        sources.first { $0.type == .local }
+    }
+
     public var body: some View {
         NavigationStack {
-            ZStack {
-                MivioTheme.background.ignoresSafeArea()
-                VStack(spacing: 16) {
-                    Image(systemName: "folder.fill")
-                        .font(.system(size: 60))
-                        .foregroundStyle(MivioTheme.accent.opacity(0.7))
-                    Text("Files")
-                        .font(.title2.bold())
-                        .foregroundStyle(.white)
-                    Text("Browse local and cloud files here.")
-                        .foregroundStyle(.secondary)
+            Group {
+                if let localSource {
+                    FolderContentsView(directoryURL: URL(fileURLWithPath: localSource.path))
+                } else {
+                    ZStack {
+                        MivioTheme.background.ignoresSafeArea()
+                        VStack(spacing: 16) {
+                            Image(systemName: "folder.fill")
+                                .font(.system(size: 60))
+                                .foregroundStyle(MivioTheme.accent.opacity(0.7))
+                            Text("No Files Yet")
+                                .font(.title2.bold())
+                                .foregroundStyle(.white)
+                            Text("Pull to refresh on Home to scan your local documents.")
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 32)
+                        }
+                    }
                 }
             }
             .navigationTitle("Files")
+            .navigationDestination(for: FileSystemEntry.self) { entry in
+                MivioFileBrowserView(directoryURL: entry.url)
+            }
+            .navigationDestination(for: MediaItem.self) { item in
+                MivioDetailScreen(item: item)
+            }
         }
+    }
+}
+
+public struct MivioFileBrowserView: View {
+    let directoryURL: URL
+
+    public init(directoryURL: URL) {
+        self.directoryURL = directoryURL
+    }
+
+    public var body: some View {
+        FolderContentsView(directoryURL: directoryURL)
+            .navigationTitle(directoryURL.lastPathComponent)
+    }
+}
+
+private struct FolderContentsView: View {
+    let directoryURL: URL
+    @Query private var mediaItems: [MediaItem]
+    @State private var entries: [FileSystemEntry] = []
+    @State private var loadFailed = false
+
+    var body: some View {
+        ZStack {
+            MivioTheme.background.ignoresSafeArea()
+
+            if loadFailed {
+                VStack(spacing: 12) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 40))
+                        .foregroundStyle(.secondary)
+                    Text("Unable to browse this folder.")
+                        .foregroundStyle(.secondary)
+                }
+            } else if entries.isEmpty {
+                VStack(spacing: 12) {
+                    Image(systemName: "tray")
+                        .font(.system(size: 40))
+                        .foregroundStyle(.secondary)
+                    Text("This folder is empty.")
+                        .foregroundStyle(.secondary)
+                }
+            } else {
+                List(entries) { entry in
+                    if entry.isDirectory {
+                        NavigationLink(value: entry) {
+                            Label(entry.url.lastPathComponent, systemImage: "folder.fill")
+                        }
+                    } else if let matchedItem = mediaItems.first(where: { $0.path == entry.url.path }) {
+                        NavigationLink(value: matchedItem) {
+                            Label(matchedItem.metadata?.title ?? entry.url.lastPathComponent, systemImage: matchedItem.type == .movie ? "film" : "tv")
+                        }
+                    } else {
+                        Label(entry.url.lastPathComponent, systemImage: "film")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .scrollContentBackground(.hidden)
+            }
+        }
+        .task {
+            loadEntries()
+        }
+    }
+
+    private static let videoExtensions: Set<String> = ["mkv", "mp4", "avi", "mov", "webm"]
+
+    private func loadEntries() {
+        let fileManager = FileManager.default
+        guard let contents = try? fileManager.contentsOfDirectory(
+            at: directoryURL,
+            includingPropertiesForKeys: [.isDirectoryKey],
+            options: [.skipsHiddenFiles]
+        ) else {
+            loadFailed = true
+            return
+        }
+
+        entries = contents
+            .map { url -> FileSystemEntry in
+                let isDirectory = (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false
+                return FileSystemEntry(url: url, isDirectory: isDirectory)
+            }
+            .filter { entry in
+                entry.isDirectory || Self.videoExtensions.contains(entry.url.pathExtension.lowercased())
+            }
+            .sorted { lhs, rhs in
+                if lhs.isDirectory != rhs.isDirectory {
+                    return lhs.isDirectory
+                }
+                return lhs.url.lastPathComponent.localizedStandardCompare(rhs.url.lastPathComponent) == .orderedAscending
+            }
     }
 }
 
