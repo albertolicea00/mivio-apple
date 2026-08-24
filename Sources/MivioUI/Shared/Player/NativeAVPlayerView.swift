@@ -5,6 +5,8 @@ import MivioCore
 struct NativeAVPlayerView: View {
     let item: MediaItem
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("BackgroundAudio") private var backgroundAudio = false
     @State private var player: AVPlayer?
 
     var body: some View {
@@ -50,6 +52,11 @@ struct NativeAVPlayerView: View {
         }
         .onDisappear {
             player?.pause()
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase != .active && !backgroundAudio {
+                player?.pause()
+            }
         }
     }
 }

@@ -27,6 +27,11 @@ final class VLCPlayerCoordinator: NSObject, ObservableObject, VLCMediaPlayerDele
         player.isPlaying ? player.pause() : player.play()
     }
 
+    func pauseForBackground() {
+        guard let player, player.isPlaying else { return }
+        player.pause()
+    }
+
     func beginScrub() { isScrubbing = true }
 
     func endScrub() {

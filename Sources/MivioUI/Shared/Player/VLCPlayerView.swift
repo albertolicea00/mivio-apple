@@ -7,6 +7,8 @@ struct VLCPlayerView: View {
     let item: MediaItem
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("BackgroundAudio") private var backgroundAudio = false
     @StateObject private var coordinator = VLCPlayerCoordinator()
     @State private var controlsVisible = true
     @State private var hideControlsTask: Task<Void, Never>?
@@ -55,6 +57,11 @@ struct VLCPlayerView: View {
             }
         }
         .onChange(of: coordinator.isPlaying) { _ in scheduleAutoHide() }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase != .active && !backgroundAudio {
+                coordinator.pauseForBackground()
+            }
+        }
         .onAppear { scheduleAutoHide() }
         .onDisappear { hideControlsTask?.cancel() }
     }
