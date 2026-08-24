@@ -17,11 +17,12 @@ struct NativeAVPlayerView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title3)
+                    Label("Exit", systemImage: "xmark")
+                        .font(.subheadline.weight(.medium))
                         .foregroundStyle(.white)
-                        .padding(12)
-                        .background(Circle().fill(.black.opacity(0.4)))
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 10)
+                        .background(Capsule().fill(.black.opacity(0.15)))
                 }
                 .buttonStyle(.plain)
             }
