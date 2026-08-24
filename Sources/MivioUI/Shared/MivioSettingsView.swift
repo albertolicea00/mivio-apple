@@ -88,9 +88,15 @@ public struct MivioSettingsView: View {
                     
                     // Language opens OS settings directly
                     Button {
+                        #if os(macOS)
+                        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.general") {
+                            NSWorkspace.shared.open(url)
+                        }
+                        #else
                         if let url = URL(string: UIApplication.openSettingsURLString) {
                             UIApplication.shared.open(url)
                         }
+                        #endif
                     } label: {
                         HStack(spacing: 16) {
                             ZStack {
@@ -371,9 +377,15 @@ struct PrivacySettingsView: View {
         Form {
             Section(header: Text("App Permissions"), footer: Text("Mivio requires access to your local network and files to function properly. You can manage these in iOS Settings.")) {
                 Button("Manage OS Permissions") {
+                    #if os(macOS)
+                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security") {
+                        NSWorkspace.shared.open(url)
+                    }
+                    #else
                     if let url = URL(string: UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(url)
                     }
+                    #endif
                 }
                 .foregroundStyle(MivioTheme.accent)
             }

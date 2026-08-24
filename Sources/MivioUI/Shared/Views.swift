@@ -10,6 +10,29 @@ import UIKit
 import AppKit
 #endif
 
+// MARK: - Cross-Platform Full-Screen Presentation
+
+extension View {
+    // macOS has no fullScreenCover; a sheet is the closest equivalent there.
+    @ViewBuilder
+    func mivioFullScreenCover<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View {
+        #if os(macOS)
+        self.sheet(isPresented: isPresented, content: content)
+        #else
+        self.fullScreenCover(isPresented: isPresented, content: content)
+        #endif
+    }
+
+    @ViewBuilder
+    func mivioFullScreenCover<Item: Identifiable, Content: View>(item: Binding<Item?>, @ViewBuilder content: @escaping (Item) -> Content) -> some View {
+        #if os(macOS)
+        self.sheet(item: item, content: content)
+        #else
+        self.fullScreenCover(item: item, content: content)
+        #endif
+    }
+}
+
 // MARK: - Premium Color System
 public enum MivioTheme {
     #if os(macOS)
@@ -452,7 +475,7 @@ public struct MivioDetailScreen: View {
                 .padding(.horizontal, 24)
             }
         }
-        .fullScreenCover(isPresented: $showingPlayer) {
+        .mivioFullScreenCover(isPresented: $showingPlayer) {
             MivioPlayerView(item: item)
         }
     }
@@ -582,10 +605,16 @@ public struct MivioFileBrowserView: View {
 
 private struct FolderContentsView: View {
     let directoryURL: URL
+    @Environment(\.modelContext) private var modelContext
     @Query private var mediaItems: [MediaItem]
     @State private var entries: [FileSystemEntry] = []
     @State private var loadFailed = false
     @State private var playingItem: MediaItem?
+    @AppStorage("FilesViewMode") private var viewMode = "list" // "list" or "gallery"
+    @State private var pendingDeleteEntry: FileSystemEntry?
+    @State private var deleteErrorMessage: String?
+
+    private let galleryColumns = [GridItem(.adaptive(minimum: 120, maximum: 160), spacing: 16)]
 
     var body: some View {
         ZStack {
@@ -607,39 +636,180 @@ private struct FolderContentsView: View {
                     Text("This folder is empty.")
                         .foregroundStyle(.secondary)
                 }
-            } else {
-                List(entries) { entry in
-                    if entry.isDirectory {
-                        NavigationLink(value: entry) {
-                            Label(entry.url.lastPathComponent, systemImage: "folder.fill")
-                        }
-                    } else if let matchedItem = mediaItems.first(where: { $0.path == entry.url.path }) {
-                        Button {
-                            playingItem = matchedItem
-                        } label: {
-                            Label(matchedItem.metadata?.title ?? entry.url.lastPathComponent, systemImage: matchedItem.type == .movie ? "film" : "tv")
-                        }
-                    } else {
-                        Button {
-                            playingItem = MediaItem(
-                                path: entry.url.path,
-                                type: .movie,
-                                size: Int64((try? entry.url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize ?? 0),
-                                fileName: entry.url.lastPathComponent
-                            )
-                        } label: {
-                            Label(entry.url.lastPathComponent, systemImage: "film")
+            } else if viewMode == "gallery" {
+                ScrollView {
+                    LazyVGrid(columns: galleryColumns, spacing: 20) {
+                        ForEach(entries) { entry in
+                            galleryTile(for: entry)
                         }
                     }
+                    .padding()
+                }
+            } else {
+                List(entries) { entry in
+                    listRow(for: entry)
                 }
                 .scrollContentBackground(.hidden)
             }
         }
-        .fullScreenCover(item: $playingItem) { item in
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    viewMode = (viewMode == "list") ? "gallery" : "list"
+                } label: {
+                    Image(systemName: viewMode == "list" ? "square.grid.2x2" : "list.bullet")
+                }
+            }
+        }
+        .mivioFullScreenCover(item: $playingItem) { item in
             MivioPlayerView(item: item)
         }
         .task {
             loadEntries()
+        }
+        .alert(
+            "Delete File?",
+            isPresented: Binding(
+                get: { pendingDeleteEntry != nil },
+                set: { if !$0 { pendingDeleteEntry = nil } }
+            )
+        ) {
+            Button("Delete", role: .destructive) {
+                if let entry = pendingDeleteEntry { delete(entry) }
+                pendingDeleteEntry = nil
+            }
+            Button("Cancel", role: .cancel) { pendingDeleteEntry = nil }
+        } message: {
+            Text("\"\(pendingDeleteEntry?.url.lastPathComponent ?? "")\" will be permanently deleted from disk. This cannot be undone.")
+        }
+        .alert(
+            "Couldn't Delete File",
+            isPresented: Binding(
+                get: { deleteErrorMessage != nil },
+                set: { if !$0 { deleteErrorMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) { deleteErrorMessage = nil }
+        } message: {
+            Text(deleteErrorMessage ?? "")
+        }
+    }
+
+    @ViewBuilder
+    private func listRow(for entry: FileSystemEntry) -> some View {
+        if entry.isDirectory {
+            NavigationLink(value: entry) {
+                Label(entry.url.lastPathComponent, systemImage: "folder.fill")
+            }
+        } else {
+            Button {
+                play(entry)
+            } label: {
+                Label(displayName(for: entry), systemImage: icon(for: entry))
+            }
+            .contextMenu { fileActions(for: entry) }
+            .swipeActions(edge: .trailing) {
+                Button(role: .destructive) {
+                    pendingDeleteEntry = entry
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+                revealButton(for: entry)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func galleryTile(for entry: FileSystemEntry) -> some View {
+        if entry.isDirectory {
+            NavigationLink(value: entry) {
+                galleryTileLabel(icon: "folder.fill", title: entry.url.lastPathComponent)
+            }
+            .buttonStyle(.plain)
+        } else {
+            Button {
+                play(entry)
+            } label: {
+                galleryTileLabel(icon: icon(for: entry), title: displayName(for: entry))
+            }
+            .buttonStyle(.plain)
+            .contextMenu { fileActions(for: entry) }
+        }
+    }
+
+    private func galleryTileLabel(icon: String, title: String) -> some View {
+        VStack(spacing: 8) {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(MivioTheme.cardBackground)
+                .aspectRatio(1, contentMode: .fit)
+                .overlay(
+                    Image(systemName: icon)
+                        .font(.system(size: 32))
+                        .foregroundStyle(MivioTheme.accent)
+                )
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.primary)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+        }
+    }
+
+    @ViewBuilder
+    private func fileActions(for entry: FileSystemEntry) -> some View {
+        revealButton(for: entry)
+        Button(role: .destructive) {
+            pendingDeleteEntry = entry
+        } label: {
+            Label("Delete", systemImage: "trash")
+        }
+    }
+
+    @ViewBuilder
+    private func revealButton(for entry: FileSystemEntry) -> some View {
+        #if os(macOS)
+        Button {
+            NSWorkspace.shared.activateFileViewerSelecting([entry.url])
+        } label: {
+            Label("Show in Finder", systemImage: "folder")
+        }
+        #else
+        ShareLink(item: entry.url) {
+            Label("Share...", systemImage: "square.and.arrow.up")
+        }
+        #endif
+    }
+
+    private func displayName(for entry: FileSystemEntry) -> String {
+        mediaItems.first(where: { $0.path == entry.url.path })?.metadata?.title ?? entry.url.lastPathComponent
+    }
+
+    private func icon(for entry: FileSystemEntry) -> String {
+        mediaItems.first(where: { $0.path == entry.url.path })?.type == .episode ? "tv" : "film"
+    }
+
+    private func play(_ entry: FileSystemEntry) {
+        if let matched = mediaItems.first(where: { $0.path == entry.url.path }) {
+            playingItem = matched
+        } else {
+            playingItem = MediaItem(
+                path: entry.url.path,
+                type: .movie,
+                size: Int64((try? entry.url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize ?? 0),
+                fileName: entry.url.lastPathComponent
+            )
+        }
+    }
+
+    private func delete(_ entry: FileSystemEntry) {
+        do {
+            try FileManager.default.removeItem(at: entry.url)
+            if let matched = mediaItems.first(where: { $0.path == entry.url.path }) {
+                modelContext.delete(matched)
+            }
+            entries.removeAll { $0.id == entry.id }
+        } catch {
+            deleteErrorMessage = error.localizedDescription
         }
     }
 
