@@ -585,6 +585,7 @@ private struct FolderContentsView: View {
     @Query private var mediaItems: [MediaItem]
     @State private var entries: [FileSystemEntry] = []
     @State private var loadFailed = false
+    @State private var playingItem: MediaItem?
 
     var body: some View {
         ZStack {
@@ -613,16 +614,29 @@ private struct FolderContentsView: View {
                             Label(entry.url.lastPathComponent, systemImage: "folder.fill")
                         }
                     } else if let matchedItem = mediaItems.first(where: { $0.path == entry.url.path }) {
-                        NavigationLink(value: matchedItem) {
+                        Button {
+                            playingItem = matchedItem
+                        } label: {
                             Label(matchedItem.metadata?.title ?? entry.url.lastPathComponent, systemImage: matchedItem.type == .movie ? "film" : "tv")
                         }
                     } else {
-                        Label(entry.url.lastPathComponent, systemImage: "film")
-                            .foregroundStyle(.secondary)
+                        Button {
+                            playingItem = MediaItem(
+                                path: entry.url.path,
+                                type: .movie,
+                                size: Int64((try? entry.url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize ?? 0),
+                                fileName: entry.url.lastPathComponent
+                            )
+                        } label: {
+                            Label(entry.url.lastPathComponent, systemImage: "film")
+                        }
                     }
                 }
                 .scrollContentBackground(.hidden)
             }
+        }
+        .fullScreenCover(item: $playingItem) { item in
+            MivioPlayerView(item: item)
         }
         .task {
             loadEntries()
