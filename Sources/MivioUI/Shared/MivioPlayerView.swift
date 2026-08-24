@@ -16,7 +16,7 @@ public struct MivioPlayerView: View {
     let item: MediaItem
 
     // Shared with Settings > Playback's "Player Engine" picker ("Native" or "VLC").
-    @AppStorage("PlayerEngine") private var playerEngine = "Native"
+    @AppStorage("PlayerEngine") private var playerEngine = "VLC"
 
     public init(item: MediaItem) {
         self.item = item
