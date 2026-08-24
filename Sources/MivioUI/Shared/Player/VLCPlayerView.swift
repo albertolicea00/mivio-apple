@@ -6,6 +6,7 @@ import MivioCore
 struct VLCPlayerView: View {
     let item: MediaItem
 
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var coordinator = VLCPlayerCoordinator()
     @State private var controlsVisible = true
     @State private var hideControlsTask: Task<Void, Never>?
@@ -28,6 +29,25 @@ struct VLCPlayerView: View {
                 .contentShape(Rectangle())
                 .ignoresSafeArea()
                 .onTapGesture { toggleControls() }
+
+            if controlsVisible {
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.title3)
+                            .foregroundStyle(.white)
+                            .padding(12)
+                            .background(Circle().fill(.black.opacity(0.4)))
+                    }
+                    .buttonStyle(.plain)
+                    Spacer()
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .transition(.opacity)
+            }
 
             if controlsVisible {
                 VLCPlayerControls(coordinator: coordinator)
