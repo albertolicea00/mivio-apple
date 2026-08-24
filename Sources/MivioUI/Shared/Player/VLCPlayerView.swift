@@ -56,8 +56,8 @@ struct VLCPlayerView: View {
                     .transition(.opacity)
             }
         }
-        .onChange(of: coordinator.isPlaying) { _ in scheduleAutoHide() }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: coordinator.isPlaying) { _, _ in scheduleAutoHide() }
+        .onChange(of: scenePhase) { _, newPhase in
             if newPhase != .active && !backgroundAudio {
                 coordinator.pauseForBackground()
             }
